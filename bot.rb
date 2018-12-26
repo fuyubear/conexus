@@ -111,6 +111,12 @@ def handle_user_change(action, voice_channel, user)
 
   # For whatever reason, maybe is AFK channel
   return if text_channel.nil?
+  
+  if action == :join
+    text_channel.define_overwrite(user, TEXT_PERMS, 0)
+  else
+    text_channel.define_overwrite(user, 0, 0)
+  end
 end
 
 # VOICE-CHANNEL CREATED
